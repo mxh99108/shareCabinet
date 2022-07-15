@@ -1,0 +1,26 @@
+
+spring:
+  datasource:
+    username: root
+    password: mxh
+    url: jdbc:mysql://localhost:3306/shared
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8082
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+#    驼峰映射
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+#    返回map时，若数据为空则返回null
+    call-setters-on-nulls: true
+#    sql日志打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql

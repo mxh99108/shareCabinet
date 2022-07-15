@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mxh.share.mapper.CabMapper">
+
+    <select id="selectCabWithId" resultType="map">
+        select b.cab_id,count(*) as sum,
+        count(b.is_used = 1 or null ) as is_used,
+        count(b.is_used = 0 or null ) as not_using
+        from tb_box b
+        where cab_id = #{cab_id}
+        group by cab_id
+        limit #{currentPage}, #{pageSize}
+    </select>
+
+    <select id="selectCab" resultType="map">
+        select b.cab_id,count(*) as sum,
+        count(b.is_used = 1 or null ) as is_used,
+        count(b.is_used = 0 or null ) as not_using
+        from tb_box b
+        group by cab_id
+        limit #{currentPage}, #{pageSize}
+    </select>
+
+    <select id="selectAll" resultType="map">
+        select b.cab_id,count(*) as sum,
+        count(b.is_used = 1 or null ) as on_using,
+        count(b.is_used = 0 or null ) as not_using
+        from tb_box b
+        group by cab_id
+    </select>
+
+</mapper>
